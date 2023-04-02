@@ -12,6 +12,10 @@ const port = 8000;
 // and import the router here and tell the app that all the routes will be handle by this router
 app.use('/',require('./routes/index'));
 
+//set up the view engine
+app.set('view engine','ejs');
+app.set('views','./views')
+
 // make your server listen to that port and when it does it should notify you
 app.listen(port, function (err) {
   if (err) {
