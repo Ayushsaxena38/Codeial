@@ -8,10 +8,20 @@ const router = express.Router();
 //now aquire the controller file from controller folder
 const homeController = require('../controllers/home_controller');
 
+const userController = require('./users');
+
 console.log('Router is loaded');
 
 //now add the apropriate action according to the url
+
 router.get('/', homeController.home);
+
+router.get('/about',homeController.about);
+
+router.use('/users', userController);
+
+//just for a example if you want to add more routes use following comment
+//router.use('/routerName',require('./routerFile'));
 
 //now exports the module so that index.js(entry file of server) can use this router 
 
