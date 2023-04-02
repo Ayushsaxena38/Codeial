@@ -8,6 +8,10 @@ const app = express();
 // now define a port
 const port = 8000;
 
+// now first create a router in the routes folder and then exports the router
+// and import the router here and tell the app that all the routes will be handle by this router
+app.use('/',require('./routes/index'));
+
 // make your server listen to that port and when it does it should notify you
 app.listen(port, function (err) {
   if (err) {
@@ -18,7 +22,8 @@ app.listen(port, function (err) {
   return;
 });
 // i have specified the "start" keyword to "nodemon index.js" command
-// now whenever i write start in terminal , it will execute nodemon index.js command
+// now whenever i write "npm start" in bash , it will execute "nodemon index.js" command
 //i have done this by package.json file
 //for specifing any keyword go to package.json file and then scripts
 // in scripts just append your keyword by this syntex -> "key":"command"
+
