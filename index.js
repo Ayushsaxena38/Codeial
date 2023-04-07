@@ -8,6 +8,17 @@ const app = express();
 // now define a port
 const port = 8000;
 
+//to use layouts in ejs, first you need to install the required library which is called 'express-ejs-layouts'
+//to install express-ejs-layouts library , write 'npm install express-ejs-layouts' in terminal/bash
+//after installing the library , now require express-ejs-layouts here
+const expressLayouts = require('express-ejs-layouts');
+//now we have got our library, now we have to tell our app/server to use it
+// for that we have to write the following command 
+app.use(expressLayouts);//<= this needs to be done before the routes middleware
+
+//to use static files in ejs, first you need to tell app/server to use static files in assets folder which is neighbouring to the server file
+app.use(express.static('./assets'));
+
 // now first create a router in the routes folder and then exports the router
 // and import the router here and tell the app that all the routes will be handle by this router
 app.use('/',require('./routes/index'));

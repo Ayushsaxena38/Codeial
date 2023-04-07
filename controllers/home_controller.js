@@ -1,6 +1,10 @@
 module.exports.home = function(req,res){
-    res.end(`<h1>Express is Up and ready for codeial!</h1>`);
+    return res.render('home',{
+        title : "home"
+    });
 }
 module.exports.about = function(req,res){
-    res.end('<h1>About Section</h1>');
+    return res.render('about',{
+        title : "About"
+    });
 }
