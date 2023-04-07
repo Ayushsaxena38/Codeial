@@ -8,6 +8,9 @@ const app = express();
 // now define a port
 const port = 8000;
 
+//require the database connection here
+const db = require('./config/mongoose');
+
 //to use layouts in ejs, first you need to install the required library which is called 'express-ejs-layouts'
 //to install express-ejs-layouts library , write 'npm install express-ejs-layouts' in terminal/bash
 //after installing the library , now require express-ejs-layouts here
