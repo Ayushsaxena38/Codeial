@@ -11,6 +11,10 @@ const port = 8000;
 //require the database connection here
 const db = require('./config/mongoose');
 
+//to access the cookies and alter the cookies, first you need to install the cookie-parser
+//and after installing, you have to require/import it here
+const cookieParser = require('cookie-parser');
+
 //to use layouts in ejs, first you need to install the required library which is called 'express-ejs-layouts'
 //to install express-ejs-layouts library , write 'npm install express-ejs-layouts' in terminal/bash
 //after installing the library , now require express-ejs-layouts here
@@ -20,7 +24,13 @@ const expressLayouts = require('express-ejs-layouts');
 app.use(expressLayouts);//<= this needs to be done before the routes middleware
 
 //to use static files in ejs, first you need to tell app/server to use static files in assets folder which is neighbouring to the server file
-app.use(express.static('./assets'));
+app.use(express.static(__dirname + '/assets'));
+
+//to access the req.body you have to use this command 
+app.use(express.urlencoded());
+
+//now you have to tell the browser that use cookieParser() via middleWare
+app.use(cookieParser());
 
 // now first create a router in the routes folder and then exports the router
 // and import the router here and tell the app that all the routes will be handle by this router
