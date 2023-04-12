@@ -49,7 +49,7 @@ app.use(session({//<-- this middleware is creating the session and save it to co
   saveUninitialized : false,
   resave : false,
   cookie : {
-    maxAge : (1000 * 60 *60)
+    maxAge : (1000 * 60 *60)//<-- max age is 60 mins 
   },
   store :MongoStore.create(//<== it is done by connect-mongo library, to make our session cookie or session login servives the restart of server
     {
