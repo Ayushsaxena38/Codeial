@@ -1,8 +1,10 @@
 //first require the mongoose library
 const mongoose = require('mongoose');
 
+const url = "mongodb://127.0.0.1:27017/codeial_development";
+
 //now create a connection to mongoDB 
-mongoose.connect('mongodb://127.0.0.1:27017/codeial_development');
+mongoose.connect(url);
 
 //now aquire the instance of conncetion in a veriable
 const db = mongoose.connection;

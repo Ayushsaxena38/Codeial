@@ -3,11 +3,22 @@
     Codeial / <%= title %>
 </h1>
 
-<h4>
-    <a href="/users/login">Login</a> <br>
-    or <br>
-    <a href="/users/create">Register</a>
-</h4>
+
+<%if(locals.user){%>
+    <h4>
+        User Name : <%= locals.user.name%>
+        <br>
+        <a href="/users/userPage">Go To Profile</a>
+    </h4>
+        
+<%}else{%>
+    <h4>
+        <a href="/users/login">Login</a> <br>
+        or <br>
+        <a href="/users/create">Register</a>
+    </h4>
+<%}%>
+
 
 
         

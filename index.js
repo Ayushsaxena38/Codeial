@@ -11,6 +11,16 @@ const port = 8000;
 //require the database connection here
 const db = require('./config/mongoose');
 
+//require express-session used for session cookie 
+const session = require('express-session');
+//require passport
+const passport = require('passport');
+//require passport-local
+const  passportLocal = require('./config/passport-local-strategy');
+
+//require connect-mongo here
+const MongoStore = require('connect-mongo');
+
 //to access the cookies and alter the cookies, first you need to install the cookie-parser
 //and after installing, you have to require/import it here
 const cookieParser = require('cookie-parser');
@@ -31,6 +41,29 @@ app.use(express.urlencoded());
 
 //now you have to tell the browser that use cookieParser() via middleWare
 app.use(cookieParser());
+
+app.use(session({//<-- this middleware is creating the session and save it to cookie and with the help of connect-mongo(MongoStore) this middleware is saving the session details to dabase server so thet it could survive the server restart
+  name : "codial",
+  //TODO change the secret before deployment in production mode
+  secret : "blahsomething",
+  saveUninitialized : false,
+  resave : false,
+  cookie : {
+    maxAge : (1000 * 60 *60)
+  },
+  store :MongoStore.create(//<== it is done by connect-mongo library, to make our session cookie or session login servives the restart of server
+    {
+      mongoUrl : "mongodb://127.0.0.1:27017/codeial_development",//<-- here you need to give the mongoose connection link which you have used in mongoose.js file
+      autoRemove : 'disabled',
+    },function(err){
+      console.log('err in storing the session cookie in mongodb',err);
+    })
+}));
+//here we have initialize the passport and session which should be done before the app.set('view engine' : 'ejs') and also before the router middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);//<-- this middleware which is in passport-local-strategy.js , is used to take the user id and session details from cookie and then save the user details in lodals.user
 
 // now first create a router in the routes folder and then exports the router
 // and import the router here and tell the app that all the routes will be handle by this router
