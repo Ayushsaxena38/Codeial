@@ -1,3 +1,23 @@
 <footer>
-    this is footer which is common
+    <div id="cnt">
+        <div id="footer-inf">
+            <h3>
+                © Codial. All Rights Reserved
+            </h3>
+        </div>
+        <div id="links">
+            <h3>
+                 <a href="/">Home</a>
+            </h3>
+           <h3>
+            <%if(locals.user){%>
+                <a href="/users/userPage">Profile</a>
+            <%}else{%>
+                <a href="/users/login">Login</a>
+            <%}%>
+            
+           </h3>
+            
+        </div>
+    </div>
 </footer>

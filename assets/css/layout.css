@@ -1,5 +1,7 @@
-body{
-    background-image: radial-gradient(royalblue,violet);
-    text-align: center;
-    color:wheat;
+body {
+  margin: 0;
+}
+
+body main {
+  height: 100%;
 }

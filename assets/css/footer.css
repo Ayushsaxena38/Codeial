@@ -1,0 +1,15 @@
+footer #cnt {
+  background-color: gray;
+  display: flex;
+  align-items: center;
+}
+
+footer #cnt a {
+  line-height: 0.5rem;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+footer #cnt div {
+  margin: 3px 10px 3px 10px;
+}

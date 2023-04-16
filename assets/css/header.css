@@ -1,0 +1,24 @@
+header {
+  background-color: royalblue;
+}
+
+header #cnt {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-family: sans-serif;
+  border: 1px solid black;
+}
+
+header #cnt a {
+  text-decoration: none;
+  color: blanchedalmond;
+}
+
+header #cnt #title {
+  padding: 5px;
+}
+
+header #cnt #user-signin-signup {
+  padding: 5px;
+}
