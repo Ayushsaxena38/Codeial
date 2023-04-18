@@ -1,6 +1,7 @@
 
 const User = require('../models/user');
 const passport = require('passport');
+const Post = require('../models/post');
 module.exports.profile = function(req,res){
     res.end(`<h1>User Profile</h1>`);
 }
@@ -74,3 +75,4 @@ module.exports.deleteSession = function(req,res){
     
     return res.redirect('/');
 }
+

@@ -52,6 +52,15 @@ passport.checkAuthentication = function(req,res,next){ //<-- this function is a 
     return res.redirect('/users/login');
 }
 
+passport.checkAuthenticationFeed = function(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    return res.render('home',{
+        title : "Codeial/Home"
+    })
+}
+
 passport.setAuthenticatedUser = function(req,res,next){//<--this middleware which i create , is just taking the user details and put the user details to locals.user so the profile.ejs file can access it
     if(req.isAuthenticated()){
         res.locals.user = req.user;

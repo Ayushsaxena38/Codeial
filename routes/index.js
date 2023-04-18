@@ -10,15 +10,21 @@ const homeController = require('../controllers/home_controller');
 
 const userController = require('./users');
 
+const postController = require('./posts');
+
+const passport = require('passport');
+
 console.log('Router is loaded');
 
 //now add the apropriate action according to the url
 
-router.get('/', homeController.home);
+router.get('/',passport.checkAuthenticationFeed, homeController.userHome);
 
 router.get('/about',homeController.about);
 
 router.use('/users', userController);
+
+router.use('/posts',postController);
 
 //just for a example if you want to add more routes use following comment
 //router.use('/routerName',require('./routerFile'));
