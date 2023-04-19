@@ -22,8 +22,10 @@ module.exports.userHome = function(req,res){
     //         posts : posts
     //     })
     // })
-    Post.find({}).populate('user')
+    // Post.find({}).populate(‘user’).populate({path: ‘comments’, populate: {path: ‘user’}}).exec(); <-- old syntex(depricated syntex)
+    Post.find({}).populate('user').populate({path: 'comments', populate: {path : 'user'}})//<-- new syntex***********************
     .then((posts)=>{
+        console.log(posts)
         return res.render('home',{
             title : "user Home",
             posts : posts

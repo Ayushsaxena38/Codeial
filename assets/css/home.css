@@ -1,0 +1,54 @@
+#user-details {
+  border: 2px dashed blueviolet;
+  text-align: center;
+}
+
+#feed-posts {
+  border: 2px dashed blueviolet;
+  text-align: center;
+}
+
+#posts-list-container {
+  border: 2px dashed blueviolet;
+}
+
+#posts-list-container ul li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 3px;
+}
+
+#posts-list-container ul li .userPosted {
+  line-height: 6px;
+  width: 100%;
+  border: dashed violet;
+  background-color: lightblue;
+  color: black;
+  border-width: 2px 0px;
+}
+
+#posts-list-container ul li #postContent {
+  margin: 2px 0px;
+  border: 1px solid violet;
+  background-color: lightseagreen;
+}
+
+#posts-list-container ul li #postContent #addComment input[type='text'] {
+  margin: 2px;
+  padding: 3px;
+  width: 80%;
+}
+
+#posts-list-container ul li #postContent #addComment #hidden {
+  display: none;
+}
+
+#posts-list-container ul li #postContent #showComments {
+  border: 1px solid black;
+  background-color: lightgreen;
+  color: black;
+}

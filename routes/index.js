@@ -12,6 +12,8 @@ const userController = require('./users');
 
 const postController = require('./posts');
 
+const commentController = require('./comments');
+
 const passport = require('passport');
 
 console.log('Router is loaded');
@@ -25,6 +27,8 @@ router.get('/about',homeController.about);
 router.use('/users', userController);
 
 router.use('/posts',postController);
+
+router.use('/comments',commentController);
 
 //just for a example if you want to add more routes use following comment
 //router.use('/routerName',require('./routerFile'));
