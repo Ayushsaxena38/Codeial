@@ -30,3 +30,22 @@ module.exports.addComment = function(req,res){
         })
     })
 }
+module.exports.delete = function(req,res){
+    Post.findById(req.params.id)
+    .then((post)=>{
+        if(post.user == req.user.id){
+            Post.deleteOne(post)
+            .catch((err)=>{
+                console.log('error in deleting the post(inside the post_controller.js) :',err); 
+            })
+            Comment.deleteMany({'post':req.params.id})
+            .catch((err)=>{
+                console.log('error deleting the comments :',err);
+            })
+        }
+        
+        
+        
+    })
+    return res.redirect('back');
+}

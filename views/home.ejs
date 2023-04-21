@@ -29,8 +29,14 @@
                         <div class="userPosted">
                             <p><%= post.user.name %></p>
                         </div>
+                        <%if(locals.user.id == post.user.id){%>
+                            <a href="/posts/delete/<%=post.id%>"><button>Delete</button></a>
+                        <%}%>
                         <div id="postContent">
                             <p><%= post.content %></p>
+                            <br>
+                            
+                            
                             <div id="addComment">
                                 <form action="/comments/addComment" method="post">
                                     <input type="text" name = 'content' placeholder="Add Comment....">

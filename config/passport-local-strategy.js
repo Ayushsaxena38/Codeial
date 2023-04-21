@@ -49,7 +49,7 @@ passport.checkAuthentication = function(req,res,next){ //<-- this function is a 
         return next();
     }
     //if the user is not signed in
-    return res.redirect('/users/login');
+    return res.redirect('back');
 }
 
 passport.checkAuthenticationFeed = function(req,res,next){
