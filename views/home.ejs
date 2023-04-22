@@ -58,6 +58,9 @@
                                                 <div class="userPosted">
                                                     <p><%= cmnt.user.name %></p>
                                                 </div>
+                                                <%if(locals.user.id == cmnt.user.id){%>
+                                                    <a href="/comments/delete/<%=cmnt.id%>"><button>Delete</button></a>
+                                                <%}%>
                                                 <p><%=cmnt.content%></p>
                                             </div>
                                         </li>
