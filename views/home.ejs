@@ -22,57 +22,7 @@
     </section>
     <div id="posts-list-container">
         <h2 class = 'section-title'>feeds</h2>
-        <ul id = "post-list">
-            <% for(post of posts){ %> 
-                <li>
-                    <div id="userName-PostContent">
-                        <div class="userPosted">
-                            <p><%= post.user.name %></p>
-                        </div>
-                        <%if(locals.user.id == post.user.id){%>
-                            <a href="/posts/delete/<%=post.id%>"><button>Delete</button></a>
-                        <%}%>
-                        <div id="postContent">
-                            <p><%= post.content %></p>
-                            <br>
-                            
-                            
-                            <div id="addComment">
-                                <form action="/comments/addComment" method="post">
-                                    <input type="text" name = 'content' placeholder="Add Comment....">
-                                    <input id ="hidden" type="text" name="post" value = <%= post._id%> >
-                                    <input type="submit" value="Comment">
-                                </form>
-                            </div>
-                            <div id="showComments">
-                                <h3 class = "section-title">Comments</h3>
-                                <% if(post.comments.length == 0){%>
-                                    <div>
-                                        <p style="text-align: center">NO Comments</p>
-                                    </div>
-                                <%}%>
-                                <ul>
-                                    <% for(cmnt of post.comments){ %>
-                                        <li>
-                                            <div>
-                                                <div class="userPosted">
-                                                    <p><%= cmnt.user.name %></p>
-                                                </div>
-                                                <%if(locals.user.id == cmnt.user.id){%>
-                                                    <a href="/comments/delete/<%=cmnt.id%>"><button>Delete</button></a>
-                                                <%}%>
-                                                <p><%=cmnt.content%></p>
-                                            </div>
-                                        </li>
-                                    <%}%>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </li>
-            <% } %>
-        </ul>
+        <%- include('_post')%>
     </div>
         
 <%}else{%>
