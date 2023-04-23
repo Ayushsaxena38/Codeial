@@ -1,0 +1,14 @@
+.user-details, .other-user-details {
+  text-align: center;
+  width: 100%;
+}
+
+#edit-user-details {
+  text-align: center;
+}
+
+#edit-user-details form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

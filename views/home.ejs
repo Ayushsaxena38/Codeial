@@ -1,36 +1,59 @@
 <link rel="stylesheet" href="/css/home.css">
-<h1 class = 'section-title'>
-    Codeial / <%= title %>
-</h1>
+
 
 
 <%if(locals.user){%>
-    <div id="user-details">
-        <h4>
-            User Name : <%= locals.user.name%>
-            <br>
-            <a href="/users/userPage">Go To Profile</a>
-        </h4>
+    
+    <div id="section1">
+        <h1 class = 'section-title'>
+            Codeial / <%= title %>
+        </h1>
+        <div id="user-details">
+            <h4>
+                User Name : <%= locals.user.name%>
+                <br>
+                <a href="/users/profile">Go To Profile</a>
+            </h4>
+        </div>
+        <section id = "feed-posts">
+            <h2 class = 'section-title'>post something</h2>
+            <form action="/posts/create" method = "POST">
+                <textarea name="content" id="content" cols="30" rows="3" placeholder="type here ..." required></textarea>
+                <input type="submit" value="Post">
+            </form>
+        </section>
+        <section id="posts-list-container">
+            <h2 class = 'section-title'>feeds</h2>
+            <%- include('_post')%>
+        </section>
     </div>
     
-    <section id = "feed-posts">
-        <h2 class = 'section-title'>post something</h2>
-        <form action="/posts/create" method = "POST">
-            <textarea name="content" id="content" cols="30" rows="3" placeholder="type here ..." required></textarea>
-            <input type="submit" value="Post">
-        </form>
-    </section>
-    <div id="posts-list-container">
-        <h2 class = 'section-title'>feeds</h2>
-        <%- include('_post')%>
+    <div id="user-list-container">
+        <h2 class="section-title">
+            Users
+        </h2>
+        <ul>
+            <% for(u of all_users){ %>
+            <li>
+                <p>
+                    <a href="/users/userpage/<%= u._id %>">
+                        <%= u.name %>
+                    </a>
+                </p>
+            </li>
+            <% } %>
+        </ul>
     </div>
         
 <%}else{%>
-    <h4>
-        <a href="/users/login">Login</a> <br>
-        or <br>
-        <a href="/users/create">Register</a>
-    </h4>
+    <div id="login-signup">
+        <h4>
+            <a href="/users/login">Login</a> <br>
+            or <br>
+            <a href="/users/create">Register</a>
+        </h4>
+    </div>
+    
 <%}%>
 
 

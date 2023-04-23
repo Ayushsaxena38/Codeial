@@ -25,7 +25,7 @@ module.exports.delete = function(req,res){
         if(req.user.id == cmnt.user){
             let postId=cmnt.post;
             Comment.deleteOne(cmnt)
-            .then((err)=>{
+            .catch((err)=>{
                 console.log('error in deleting the comment err :',err);
             })
             Post.findByIdAndUpdate(postId, { $pull : {"comments": req.params.id}})

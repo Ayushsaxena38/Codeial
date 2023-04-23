@@ -1,5 +1,5 @@
 const Post = require('../models/post');
-
+const User = require('../models/user');
 module.exports.home = function(req,res){
     console.log(req.cookies);
     return res.render('home',{
@@ -25,11 +25,16 @@ module.exports.userHome = function(req,res){
     // Post.find({}).populate(‘user’).populate({path: ‘comments’, populate: {path: ‘user’}}).exec(); <-- old syntex(depricated syntex)
     Post.find({}).populate('user').populate({path: 'comments', populate: {path : 'user'}})//<-- new syntex***********************
     .then((posts)=>{
-        console.log(posts)
+        User.find({})
+        .then((all_users)=>{
         return res.render('home',{
-            title : "user Home",
-            posts : posts
+                title : "user Home",
+                posts : posts,
+                all_users : all_users
+            })
         })
+        // console.log(posts)
+        
     })
     .catch((err)=>{
         if(err){

@@ -57,12 +57,22 @@ name : req.body.name})
 })
 }
 module.exports.profile = function(req,res){
-    return res.redirect('/users/userPage');
-}
-module.exports.userPage = function(req,res){
     return res.render('profile',{
         title : "profile page",
-        user : res.locals.user
+        user : req.user
+    })
+}
+module.exports.userPage = function(req,res){
+    User.findById(req.params.id)
+    .then((user)=>{
+        return res.render('profile',{
+            title : "profile page",
+            other_user : user
+        })
+    })
+    .catch((err)=>{
+        console.log("error in finding that user err: ",err);
+        return res.redirect('/');
     })
 }
 module.exports.deleteSession = function(req,res){
@@ -75,4 +85,20 @@ module.exports.deleteSession = function(req,res){
     
     return res.redirect('/');
 }
-
+module.exports.update = function(req,res){
+    console.log(req.body);
+    if(req.user.email == req.body.email){
+        console.log('hi');
+        User.findByIdAndUpdate(req.user.id , req.body)
+        .then((user)=>{
+            console.log('user details updated successfully',user);
+            
+        })
+        .catch((err)=>{
+            console.log('error in updating the user details err: ',err);
+        })
+    }else{
+        console.log('bye');
+    }
+    res.redirect('/users/profile');
+}

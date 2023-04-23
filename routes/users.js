@@ -11,6 +11,8 @@ router.post('/create-session',passport.authenticate(
 )
 ,userController.profile);
 
+router.get('/userpage/:id',passport.checkAuthentication,userController.userPage);
+
 router.get('/login',userController.login);
 
 router.get('/create',userController.signup);
@@ -19,8 +21,10 @@ router.post('/create-acn', userController.create);
 
 router.get('/check',userController.check);//<-- this was made to check that how to see data on postman softwere
 
-router.get("/userPage",passport.checkAuthentication,userController.userPage);
+router.get("/profile",passport.checkAuthentication,userController.profile);
 
 router.post('/delete-session',userController.deleteSession);
+
+router.post('/update-details',passport.checkAuthentication,userController.update)
 
 module.exports = router;

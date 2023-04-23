@@ -7,9 +7,16 @@ body {
   align-items: center;
 }
 
+body #logIn {
+  text-align: center;
+  width: 100%;
+}
+
 body main {
   min-height: 100%;
   width: 95%;
+  display: flex;
+  justify-content: space-between;
 }
 
 body main .section-title {

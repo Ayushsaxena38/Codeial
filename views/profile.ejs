@@ -1,7 +1,31 @@
-
-<h1>User : <%= user.name %></h1>
-<h1>Email : <%= user.email %></h1>
-<p><form action="/users/delete-session" method = "post">
-    <button type = "submit">sign-out</button>
-</form>
-</p>
+<link rel="stylesheet" href="/css/profile.css">
+<%if( locals.other_user ){ %>
+    <div class="other-user-details">
+        <h1> User Name : <%= locals.other_user.name %></h1>
+        <h1> User Email : <%= locals.other_user.email %></h1>
+    </div>
+<%}else{%>
+    <div class="user-details">
+        <h1>User : <%= locals.user.name %></h1>
+        <h1>Email : <%= locals.user.email %></h1>
+        <p><form action="/users/delete-session" method = "post">
+            <button type = "submit">sign-out</button>
+        </form>
+        </p>
+        <div id="edit-user-details">
+            <h2 class="section-title">
+                Update Details
+            </h2>
+            <form action="/users/update-details" method="post">
+                <input type="text" required name = "name" id = "name" placeholder="Enter New Name">
+                <br>
+                <input type="password" required name = "password" id = "password" placeholder="Enter New Password">
+                <br>
+                <input type="emai" required name = "email" id = "email" value = <%= locals.user.email%> readonly>
+                <br>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+    
+<% } %>

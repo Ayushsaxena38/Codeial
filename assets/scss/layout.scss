@@ -5,9 +5,15 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    #logIn{
+        text-align: center;
+        width: 100%;
+    }
     main{
         min-height : 100%;
         width: 95%;
+        display: flex;
+        justify-content: space-between;
         .section-title{
             text-align: center;
             background-color: cornflowerblue;
