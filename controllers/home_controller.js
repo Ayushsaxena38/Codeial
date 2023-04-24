@@ -11,7 +11,7 @@ module.exports.about = function(req,res){
         title : "About"
     });
 }
-module.exports.userHome = function(req,res){
+module.exports.userHome = async function(req,res){
     // Post.find({}).populate('user').exac((err,posts)=>{
     //     if(err){
     //         console.log('error fetching the feeds :',err);
@@ -23,23 +23,43 @@ module.exports.userHome = function(req,res){
     //     })
     // })
     // Post.find({}).populate(‘user’).populate({path: ‘comments’, populate: {path: ‘user’}}).exec(); <-- old syntex(depricated syntex)
-    Post.find({}).populate('user').populate({path: 'comments', populate: {path : 'user'}})//<-- new syntex***********************
-    .then((posts)=>{
-        User.find({})
-        .then((all_users)=>{
-        return res.render('home',{
+    // Post.find({}).populate('user').populate({path: 'comments', populate: {path : 'user'}})//<-- new syntex***********************
+    // .then((posts)=>{
+    //     User.find({})
+    //     .then((all_users)=>{
+    //     return res.render('home',{
+    //             title : "user Home",
+    //             posts : posts,
+    //             all_users : all_users
+    //         })
+    //     })
+    //     // console.log(posts)
+        
+    // })
+    // .catch((err)=>{
+    //     if(err){
+    //         console.log('error fetching the feeds :',err);
+    //         return res.redirect('/');
+    //     }
+    // })
+    //use try catch syntex for the promices
+    try{
+        let posts = await Post.find({}).populate('user').populate({path: 'comments', populate: {path : 'user'}});
+        try{
+            let all_users = await User.find({});
+            return res.render('home',{
                 title : "user Home",
                 posts : posts,
                 all_users : all_users
             })
-        })
-        // console.log(posts)
-        
-    })
-    .catch((err)=>{
-        if(err){
+        }catch(err){
             console.log('error fetching the feeds :',err);
             return res.redirect('/');
         }
-    })
+        
+        
+    }catch(err){
+        console.log('error fetching the feeds :',err);
+        return res.redirect('/');
+    }
 }
