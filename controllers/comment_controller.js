@@ -14,6 +14,7 @@ module.exports.addComment = function(req,res){
             post.comments.push(cmnt);
             post.save();
             console.log('done',cmnt);
+            req.flash('success',' Comment is added successfully');
             return res.redirect('back');
         })
     })
@@ -39,6 +40,7 @@ module.exports.delete = function(req,res){
             //     post.save();
             // })
             console.log('deleted');
+            req.flash('success',' Comment is deleted successfully');
             res.redirect('back');
         }
     })

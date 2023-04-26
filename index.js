@@ -36,6 +36,12 @@ const expressLayouts = require('express-ejs-layouts');
 // for that we have to write the following command 
 app.use(expressLayouts);//<= this needs to be done before the routes middleware
 
+//to show the flash messages , we need to require the library called connect-flash
+const flash = require('connect-flash');
+
+//now use that middleware that we create to copy or send the flash object from request to response
+const customMware = require('./config/customMiddleware');
+
 //create the node-sass-middleware before the express.static() middleware
 app.use(sassMiddleware({
   src : './assets/scss',
@@ -75,7 +81,12 @@ app.use(session({//<-- this middleware is creating the session and save it to co
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(passport.setAuthenticatedUser);//<-- this middleware which is in passport-local-strategy.js , is used to take the user id and session details from cookie and then save the user details in lodals.user
+app.use(passport.setAuthenticatedUser);//<-- this middleware which is in passport-local-strategy.js , is used to take the user id and session details from cookie and then save the user details in locals.user
+
+//now after the app.use(session) and app.use(passport.setAuthenticatedUser) , we have to use flash middleware
+app.use(flash());
+//now to send or copy the flash object from request to response we need to use the custom middleware that we made for this task
+app.use(customMware.setFlash);
 
 // now first create a router in the routes folder and then exports the router
 // and import the router here and tell the app that all the routes will be handle by this router

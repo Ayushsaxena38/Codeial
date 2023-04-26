@@ -11,7 +11,9 @@ module.exports.createPost = async function(req,res){
         });
         console.log(post);
         console.log('Content is Posted');
+        req.flash('success','Post is Created successfully')
     }catch(err){
+        req.flash('error','Post is not Created dur to error');
         console.log('error in creating the post, err : ',err);
     }
     // Post.create({
@@ -67,11 +69,14 @@ module.exports.delete = async function(req,res){
             try{
                 let deleteresult = await Post.deleteOne(post);
                 console.log('deleted with delete result :',deleteresult);
+                req.flash('success','Post is Deleted with associated comments');
             }catch(err){
+                req.flash('error','Post is NOT Deleted due to error');
                 console.log('error in deleting the post, error :',err);
             }
         }
     }catch(err){
+        req.flash('error','Post is NOT Deleted due to error in finding');
         console.log('error in finding the post ,error :',err);
     }
     // Post.findById(req.params.id)

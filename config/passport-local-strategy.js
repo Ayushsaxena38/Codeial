@@ -6,18 +6,21 @@ const User = require('../models/user');
 
 //authentication using passport
 passport.use(new LocalStrategy({
-    usernameField : 'email'
-},function(email,password,done){
+    usernameField : 'email',
+    passReqToCallback : true //<-- this will allow passing the request to the below callback function which will Authenticate the User 
+},function(req,email,password,done){
     //find a user and establish the identity
     User.findOne({email : email})
     .then((user)=>{
         if(!user || user.password !== password){
             console.log('Invalid Username/password');
+            req.flash('error','Invalid Username/password')
             return done(null,false);
         }
         return done(null,user);
     })
     .catch((err)=>{
+        req.flash('error','Invalid Username/password')
         console.log('error finding the user --> Passport');
         return done(err);
     });
@@ -56,6 +59,7 @@ passport.checkAuthenticationFeed = function(req,res,next){
     if(req.isAuthenticated()){
         return next();
     }
+    console.log(req.locals);
     return res.render('home',{
         title : "Codeial/Home"
     })

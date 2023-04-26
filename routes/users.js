@@ -21,7 +21,9 @@ router.post('/create-acn', userController.create);
 
 router.get('/check',userController.check);//<-- this was made to check that how to see data on postman softwere
 
-router.get("/profile",passport.checkAuthentication,userController.profile);
+router.get("/profile",passport.checkAuthentication,userController.loggedIn);
+
+router.get('/loggedIn',passport.checkAuthentication,userController.loggedIn);
 
 router.post('/delete-session',userController.deleteSession);
 
