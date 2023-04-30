@@ -17,7 +17,7 @@
         </div>
         <section id = "feed-posts">
             <h2 class = 'section-title'>post something</h2>
-            <form action="/posts/create" method = "POST">
+            <form action="/posts/create" method = "POST" id = "postForm">
                 <textarea name="content" id="content" cols="30" rows="3" placeholder="type here ..." required></textarea>
                 <input type="submit" value="Post">
             </form>
@@ -57,5 +57,4 @@
 <%}%>
 
 
-
-        
+<script src="/js/home_posts.js"></script>

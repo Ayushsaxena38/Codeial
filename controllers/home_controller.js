@@ -44,7 +44,7 @@ module.exports.userHome = async function(req,res){
     // })
     //use try catch syntex for the promices
     try{
-        let posts = await Post.find({}).populate('user').populate({path: 'comments', populate: {path : 'user'}});
+        let posts = await Post.find({}).sort('-createdAt').populate('user').populate({path: 'comments', populate: {path : 'user'}});
         try{
             let all_users = await User.find({});
             return res.render('home',{

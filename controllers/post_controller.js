@@ -9,9 +9,19 @@ module.exports.createPost = async function(req,res){
             "content" : req.body.content,
             "user" : req.user._id
         });
+
         console.log(post);
-        console.log('Content is Posted');
-        req.flash('success','Post is Created successfully')
+        
+        if(req.xhr){
+            return res.status(200).json({
+                data : post,
+                message : 'Post is Created!!',
+                name : res.locals.user.name,
+                flash : {
+                    'success' : 'Post is Created successfully'
+                }
+            });
+        }
     }catch(err){
         req.flash('error','Post is not Created dur to error');
         console.log('error in creating the post, err : ',err);
@@ -24,6 +34,8 @@ module.exports.createPost = async function(req,res){
     //     console.log(result);
     //     console.log('Content is Posted');
     // })
+    console.log('Content is Posted');
+    req.flash('success','Post is Created successfully')
     return res.redirect('back');
 }
 module.exports.addComment = async function(req,res){

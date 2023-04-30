@@ -1,6 +1,6 @@
 <ul id = "post-list">
     <% for(post of posts){ %> 
-        <li>
+        <li id = 'post-<%= post._id%>'>
             <div id="userName-PostContent">
                 <div class="userPosted">
                     <p><%= post.user.name %></p>
