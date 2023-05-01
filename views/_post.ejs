@@ -6,7 +6,7 @@
                     <p><%= post.user.name %></p>
                 </div>
                 <%if(locals.user.id == post.user.id){%>
-                    <a href="/posts/delete/<%=post.id%>"><button>Delete</button></a>
+                    <a href="/posts/delete/<%=post.id%>" id = "delete-post" postid = "<%= post.id %>"><button>Delete</button></a>
                 <%}%>
                 <div id="postContent">
                     <p><%= post.content %></p>

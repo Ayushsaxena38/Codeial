@@ -81,6 +81,20 @@ module.exports.delete = async function(req,res){
             try{
                 let deleteresult = await Post.deleteOne(post);
                 console.log('deleted with delete result :',deleteresult);
+                try{
+                    await Comment.deleteMany({'post':req.params.id})
+                }catch(err){
+                    console.log('erorr in deleting the comments',err);
+                }
+                if(req.xhr){
+                    return res.status(200).json({
+                        data : {
+                            result : deleteresult,
+                            postid : req.params.id,
+                            flash : "Post is Deleted with associated comments"
+                        }
+                    })
+                }
                 req.flash('success','Post is Deleted with associated comments');
             }catch(err){
                 req.flash('error','Post is NOT Deleted due to error');

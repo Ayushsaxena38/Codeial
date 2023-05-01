@@ -23,13 +23,14 @@
                                 timeout : 1500
                             }).show();
                         }
+                        deletePost();
                 },
                 error : function(error){
                     console.log('erorr : ',error.responseText);
                 }
             })
         })
-
+        
     }
 
     //method to create a post and then append it into the DOM
@@ -39,7 +40,7 @@
                         <div class="userPosted">
                             <p>${name}</p>
                         </div>
-                            <a href="/posts/delete/${post._id}"><button>Delete</button></a>
+                            <a href="/posts/delete/${post._id}" id = "delete-post" postid = "${post._id}"><button>Delete</button></a>
                         <div id="postContent">
                             <p>${post.content}</p>
                             <br>
@@ -64,7 +65,43 @@
     }
 
     //function to delete post via AJAX and delete the post in the list too
-    
+    function deletePost(){
+        let delBtn = $('#delete-post');
+        delBtn.click(function(event){
+            event.preventDefault();
+            // console.log($(event.target).prop('href'));
+            console.log($(event.currentTarget));
+            console.log($(event.currentTarget).prop('href'));
+            let targetUrl = $(event.currentTarget).prop('href');
+            let targetPost = $(event.currentTarget).prop('postid');
+            // ajax request
+            $.ajax({
+                url : targetUrl,
+                method : 'get',
+                data : targetPost,
+                success : function(data){
+                    console.log(data);
+                    console.log('success',data.data.result);
+                    console.log('post-',data.data.postid);
+                    $(`#post-${data.data.postid}`).remove();
+                    //show notification
+                    if(data.data.flash && data.data.flash.length > 0) {
+                        new Noty({
+                            theme : 'relax',
+                            text: `${data.data.flash}`,
+                            type : 'success',//<-- this is a color theme type
+                            layout : 'topRight',//<-- this defines where the notification will come in the screen
+                            timeout : 1500
+                        }).show();
+                    }
+
+                },error : function(error){
+                    console.log('error',error);
+                }
+            })
+        })
+    }
+    deletePost();
 
 
 
