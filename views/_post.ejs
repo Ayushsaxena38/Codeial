@@ -14,8 +14,8 @@
                     
                     
                     <div id="addComment">
-                        <form action="/comments/addComment" method="post">
-                            <input type="text" name = 'content' placeholder="Add Comment....">
+                        <form id = 'addCommentForm' action="/comments/addComment" method="post">
+                            <input type="text" name = 'content' id = "contentComment" placeholder="Add Comment....">
                             <input id ="hidden" type="text" name="post" value = <%= post._id%> >
                             <input type="submit" value="Comment">
                         </form>
@@ -27,15 +27,15 @@
                                 <p style="text-align: center">NO Comments</p>
                             </div>
                         <%}%>
-                        <ul>
+                        <ul id ="comments-list">
                             <% for(cmnt of post.comments){ %>
-                                <li>
+                                <li id ="comment-<%= cmnt.id %>">
                                     <div>
                                         <div class="userPosted">
                                             <p><%= cmnt.user.name %></p>
                                         </div>
                                         <%if(locals.user.id == cmnt.user.id){%>
-                                            <a href="/comments/delete/<%=cmnt.id%>"><button>Delete</button></a>
+                                            <a href="/comments/delete/<%=cmnt.id%>" id = "delete-comment" commentid = "<%= cmnt.id %>"><button>Delete</button></a>
                                         <%}%>
                                         <p><%=cmnt.content%></p>
                                     </div>

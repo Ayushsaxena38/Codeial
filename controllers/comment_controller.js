@@ -14,8 +14,21 @@ module.exports.addComment = function(req,res){
             post.comments.push(cmnt);
             post.save();
             console.log('done',cmnt);
+            if(req.xhr){
+                return res.status(200).json({
+                    data : {
+                        cmnt : cmnt,
+                        flash : "Comment is added successfully",
+                        name : req.user.name
+                    }
+                })
+            }
             req.flash('success',' Comment is added successfully');
             return res.redirect('back');
+        })
+        .catch((error)=>{
+            console.log('error occured in posting the comment :',error);
+            return res.redirect('back')
         })
     })
 }
@@ -40,8 +53,22 @@ module.exports.delete = function(req,res){
             //     post.save();
             // })
             console.log('deleted');
+            if(req.xhr){
+                return res.status(200).json({
+                    data :{
+                        flash : "Comment is Deleted Successfully!",
+                        commentid : req.params.id
+                    }
+                    
+                })
+            }
             req.flash('success',' Comment is deleted successfully');
-            res.redirect('back');
+            return res.redirect('back');
         }
+        
+    })
+    .catch((error)=>{
+        console.log('error occured in finding the comment and deleting it :',error);
+        return res.redirect('back');
     })
 }
