@@ -9,6 +9,11 @@
             Codeial / <%= title %>
         </h1>
         <div id="user-details">
+            <%if(locals.user.avatar){%>
+                
+                    <img src="<%=locals.user.avatar%>" alt="">
+
+            <%}%>
             <h4>
                 User Name : <%= locals.user.name%>
                 <br>

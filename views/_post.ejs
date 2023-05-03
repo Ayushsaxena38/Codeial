@@ -3,6 +3,10 @@
         <li id = 'post-<%= post._id%>'>
             <div id="userName-PostContent">
                 <div class="userPosted">
+                    <%if(post.user.avatar){%>
+                        <img src="<%=post.user.avatar%>" alt="">
+                    <%}%>
+                    
                     <p><%= post.user.name %></p>
                 </div>
                 <%if(locals.user.id == post.user.id){%>
@@ -32,6 +36,9 @@
                                 <li id ="comment-<%= cmnt.id %>">
                                     <div>
                                         <div class="userPosted">
+                                            <%if(cmnt.user.avatar){%>
+                                                <img src="<%=cmnt.user.avatar%>" alt="">
+                                            <%}%>
                                             <p><%= cmnt.user.name %></p>
                                         </div>
                                         <%if(locals.user.id == cmnt.user.id){%>

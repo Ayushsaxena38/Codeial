@@ -9,6 +9,12 @@
 #user-details{
     border:2px dashed blueviolet;
     text-align: center;
+        img{
+            padding: 1rem;
+            height: 8rem;
+            width: 8rem;
+        }
+
 }
 #feed-posts{
     border:2px dashed blueviolet;
@@ -34,6 +40,13 @@
                 background-color:lightblue;
                 color:black;
                 border-width: 2px 0px;
+                display: flex;
+                align-items: center;
+                img{
+                    padding : 3px;
+                    height : 3rem;
+                    width: 3rem;
+                }
             }
             #postContent{
                 margin : 2px 0px ;

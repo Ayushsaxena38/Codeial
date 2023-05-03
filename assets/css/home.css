@@ -12,6 +12,12 @@
   text-align: center;
 }
 
+#user-details img {
+  padding: 1rem;
+  height: 8rem;
+  width: 8rem;
+}
+
 #feed-posts {
   border: 2px dashed blueviolet;
   text-align: center;
@@ -34,6 +40,14 @@
   background-color: lightblue;
   color: black;
   border-width: 2px 0px;
+  display: flex;
+  align-items: center;
+}
+
+#posts-list-container ul li .userPosted img, #user-list-container ul li .userPosted img {
+  padding: 3px;
+  height: 3rem;
+  width: 3rem;
 }
 
 #posts-list-container ul li #postContent, #user-list-container ul li #postContent {
