@@ -27,6 +27,6 @@ router.get('/loggedIn',passport.checkAuthentication,userController.loggedIn);
 
 router.post('/delete-session',userController.deleteSession);
 
-router.post('/update-details',passport.checkAuthentication,userController.update)
+router.post('/update-details/:email',passport.checkAuthentication,userController.update)
 
 module.exports = router;

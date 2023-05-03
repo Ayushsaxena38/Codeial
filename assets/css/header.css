@@ -21,5 +21,20 @@ header #cnt #title {
 }
 
 header #cnt #user-signin-signup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 5px;
+  min-width: 15vw;
+}
+
+header #cnt #user-signin-signup #profile-pic-header {
+  height: 2rem;
+  width: 2rem;
+}
+
+header #cnt #user-signin-signup #profile-pic-header img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }

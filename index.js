@@ -42,6 +42,9 @@ const flash = require('connect-flash');
 //now use that middleware that we create to copy or send the flash object from request to response
 const customMware = require('./config/customMiddleware');
 
+//make /uploads folder available in html
+app.use('/uploads' , express.static(__dirname + "/uploads"));
+
 //create the node-sass-middleware before the express.static() middleware
 app.use(sassMiddleware({
   src : './assets/scss',
@@ -56,6 +59,8 @@ app.use(express.static(__dirname + '/assets'));
 
 //to access the req.body you have to use this command 
 app.use(express.urlencoded());
+
+
 
 //now you have to tell the browser that use cookieParser() via middleWare
 app.use(cookieParser());

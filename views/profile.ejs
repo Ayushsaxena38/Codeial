@@ -6,6 +6,11 @@
     </div>
 <%}else{%>
     <div class="user-details">
+        <% if(locals.user.avatar){ %>
+        <div id="userImage">
+            <img src="<%= locals.user.avatar %>" alt="Profile Picture" height='200px' width = '200px'>
+        </div>
+        <% } %>
         <h1>User : <%= locals.user.name %></h1>
         <h1>Email : <%= locals.user.email %></h1>
         <p><form action="/users/delete-session" method = "post">
@@ -16,12 +21,14 @@
             <h2 class="section-title">
                 Update Details
             </h2>
-            <form action="/users/update-details" method="post">
+            <form action="/users/update-details/<%= locals.user.email %>" method="post" enctype="multipart/form-data">
                 <input type="text" required name = "name" id = "name" placeholder="Enter New Name">
                 <br>
                 <input type="password" required name = "password" id = "password" placeholder="Enter New Password">
                 <br>
                 <input type="emai" required name = "email" id = "email" value = <%= locals.user.email%> readonly>
+                <br>
+                <input type="file"  name = "avatar" id = "avatar" placeholder="Profile Picture ...">
                 <br>
                 <button type="submit">Update</button>
             </form>

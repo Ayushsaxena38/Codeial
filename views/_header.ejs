@@ -6,8 +6,15 @@
                 
             </h3>
         </div>
-        <div id="user-signin-signup">
-            <%if(locals.user){%>
+        <%if(locals.user){%>
+            
+            <div id="user-signin-signup">
+            <%if(locals.user.avatar){%>
+                <div id="profile-pic-header">
+                    <img src="<%=locals.user.avatar%>" alt="">
+                </div>
+            <%}%>
+                
                 <h4>
                     <%= locals.user.name%>
                     <a href="/users/profile">Profile</a>
@@ -19,8 +26,9 @@
                     or 
                     <a href="/users/create">Register</a>
                 </h4>
-            <%}%>
-        </div>
+            
+            </div>
+        <%}%>
     </div>
     
 </header>

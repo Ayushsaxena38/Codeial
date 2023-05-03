@@ -2,6 +2,8 @@
 const User = require('../models/user');
 const passport = require('passport');
 const Post = require('../models/post');
+const path = require('path');
+const fs = require('fs');
 module.exports.login = function (req,res){
     if(req.isAuthenticated()){
         return res.redirect('/users/userPage');
@@ -95,13 +97,34 @@ module.exports.deleteSession = function(req,res){
 }
 module.exports.update = async function(req,res){
     console.log(req.body);
-    if(req.user.email == req.body.email){
+    if(req.user.email == req.params.email){
         console.log('user is authenticated');
         try{
 
-            let user = await User.findByIdAndUpdate(req.user.id , req.body);
-            req.flash('success','User is Updated Successfully');
-            console.log('User is Updated Seccessfully',user);
+            let user = await User.findById(req.user.id);
+            User.uploadedAvatar(req,res,function(err){
+                if(err){
+                    console.log('******MULTER ERROR : ',err);
+                }
+                user.name = req.body.name,
+                user.password = req.body.password
+                if(req.file){
+                    if(user.avatar){
+                        fs.unlink(path.join(__dirname , ".." , user.avatar),(err)=>{
+                            if(err){
+                                console.log('*********fs :error in deleting the old file :',err );
+                            }
+                            console.log('*********fs : old file is deleted successfully')
+                        });
+                    }
+                    //this is saving the path of uploaded file into the avatar field in user 
+                    user.avatar = User.avatarPath + "/" + req.file.filename;
+                }
+                user.save();
+            }) 
+            
+            // req.flash('success','User is Updated Successfully');
+            // console.log('User is Updated Seccessfully',user);
         }catch(err){
             req.flash('success','User is not Updated due to error');
             console.log('Error in Updating the User',err);

@@ -15,10 +15,25 @@ header{
             
             padding: 5px;
         }
+        
         #user-signin-signup{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 5px;
-            
+            min-width: 15vw;
+            #profile-pic-header{
+                height : 2rem;
+                width : 2rem;
+                
+                img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 20px;
+                }
+            }
         }
+        
            
     }
 }
