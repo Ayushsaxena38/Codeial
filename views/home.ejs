@@ -13,6 +13,8 @@
                 
                     <img src="<%=locals.user.avatar%>" alt="">
 
+            <%}else{%>
+                <img src="/images/default-avatar.png" alt="default-avatar">
             <%}%>
             <h4>
                 User Name : <%= locals.user.name%>

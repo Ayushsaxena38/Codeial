@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 //require path
 const path = require('path');
-const { isArrayBufferView } = require('util/types');
+
 //create the avatars folder a path
 const AVATAR_PATH = path.join('/uploads/users/avatars');
 

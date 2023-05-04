@@ -9,11 +9,13 @@
         <%if(locals.user){%>
             
             <div id="user-signin-signup">
-            <%if(locals.user.avatar){%>
                 <div id="profile-pic-header">
-                    <img src="<%=locals.user.avatar%>" alt="">
-                </div>
-            <%}%>
+                <%if(locals.user.avatar){%>
+                        <img src="<%=locals.user.avatar%>" alt="">
+                <%}else{%>
+                    <img src="/images/default-avatar.png" alt="default-avatar">
+                <%}%>
+            </div>
                 
                 <h4>
                     <%= locals.user.name%>

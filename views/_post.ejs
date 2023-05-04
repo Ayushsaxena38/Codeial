@@ -5,6 +5,8 @@
                 <div class="userPosted">
                     <%if(post.user.avatar){%>
                         <img src="<%=post.user.avatar%>" alt="">
+                    <%}else{%>
+                        <img src="/images/default-avatar.png" alt="default-avatar">
                     <%}%>
                     
                     <p><%= post.user.name %></p>
@@ -38,6 +40,8 @@
                                         <div class="userPosted">
                                             <%if(cmnt.user.avatar){%>
                                                 <img src="<%=cmnt.user.avatar%>" alt="">
+                                            <%}else{%>
+                                                <img src="/images/default-avatar.png" alt="default-avatar">
                                             <%}%>
                                             <p><%= cmnt.user.name %></p>
                                         </div>
