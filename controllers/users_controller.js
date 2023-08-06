@@ -51,7 +51,7 @@ module.exports.check = async function(req,res){
         let result = await User.findOne({email : req.body.email,
         password : req.body.password,
         name : req.body.name});
-        res.jsom(result);
+        res.json(result);
     }catch(err){
         console.log('error in finding the user',err);
     }

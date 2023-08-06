@@ -30,6 +30,9 @@ router.use('/posts',postController);
 
 router.use('/comments',commentController);
 
+//for api 
+router.use('/api',require('./api/index'));
+
 //just for a example if you want to add more routes use following comment
 //router.use('/routerName',require('./routerFile'));
 
