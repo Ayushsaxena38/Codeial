@@ -1,7 +1,7 @@
 //first require the mongoose library
 const mongoose = require('mongoose');
 
-const url = "mongodb://127.0.0.1:27017/codeial_development";
+const url = "mongodb+srv://ayushsaxena38:Ayush%4012345@cluster0.dwrztdb.mongodb.net/";
 
 //now create a connection to mongoDB 
 mongoose.connect(url);
