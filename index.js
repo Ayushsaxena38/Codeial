@@ -24,7 +24,7 @@ const passportJWT = require('./config/passport-jwt-strategy');
 const MongoStore = require('connect-mongo');
 
 //require the node-sass-middleware here
-const sassMiddleware = require('node-sass-middleware');
+// const sassMiddleware = require('node-sass-middleware');
 
 //to access the cookies and alter the cookies, first you need to install the cookie-parser
 //and after installing, you have to require/import it here
@@ -48,13 +48,13 @@ const customMware = require('./config/customMiddleware');
 app.use('/uploads' , express.static(__dirname + "/uploads"));
 
 //create the node-sass-middleware before the express.static() middleware
-app.use(sassMiddleware({
-  src : './assets/scss',
-  dest : './assets/css',
-  debug : true, //<-- this will turn to false when deploye to production
-  outputStyle : 'expanded',
-  prefix : '/css'
-}))
+// app.use(sassMiddleware({
+//   src : './assets/scss',
+//   dest : './assets/css',
+//   debug : true, //<-- this will turn to false when deploye to production
+//   outputStyle : 'expanded',
+//   prefix : '/css'
+// }))
 
 //to use static files in ejs, first you need to tell app/server to use static files in assets folder which is neighbouring to the server file
 app.use(express.static(__dirname + '/assets'));
