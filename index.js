@@ -78,7 +78,7 @@ app.use(session({//<-- this middleware is creating the session and save it to co
   },
   store :MongoStore.create(//<== it is done by connect-mongo library, to make our session cookie or session login servives the restart of server
     {
-      mongoUrl : "mongodb://127.0.0.1:27017/codeial_development",//<-- here you need to give the mongoose connection link which you have used in mongoose.js file
+      mongoUrl : "mongodb+srv://ayushsaxena38:Ayush%4012345@cluster0.dwrztdb.mongodb.net/",//<-- here you need to give the mongoose connection link which you have used in mongoose.js file
       autoRemove : 'disabled',
     },function(err){
       console.log('err in storing the session cookie in mongodb',err);
